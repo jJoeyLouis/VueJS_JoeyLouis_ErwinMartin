@@ -21,7 +21,7 @@
       <hr/>
       <div class="details d-flex">
         <button type="button" class="btn btn-secondary me-2" @click="switchWindow">{{ isWindowOpen ? 'Close' : 'Open' }} window</button>
-        <button type="button" class="btn btn-danger disabled">Delete window</button>
+        <button type="button" class="btn btn-danger" @click="deleteWindow">Delete window</button>
       </div>
     </template>
   </div>
@@ -36,12 +36,13 @@ export default {
   props: ['window'],
   data: function() {
     return {
-      isExpanded: false
+      isExpanded: false,
+      windows: []
     }
   }, 
   computed: {
     isWindowOpen: function() {
-      return this.window.windowStatus.value !== 0.0; 
+      return this.window.windowStatus !== 0.0; // Il y avait initialement this.window.windowStatus.value => mais ne marchait pas
     }
   },
   methods: {
@@ -50,10 +51,23 @@ export default {
     },
     async switchWindow() {
       let response = await axios.patch(`${API_HOST}/api/windows/${this.window.id}/switch`);
-      
       // Here, I should use the response from the server, but the backend currently
       // has a bug, where it doesn't send back the correct value. This is a workaround.
-      this.window.windowStatus.value = (this.window.windowStatus.value === 0.0 ?  1.0 : 0.0);
+      this.window.windowStatus = (this.window.windowStatus === 0.0 ?  1.0 : 0.0);
+    },
+    deleteWindow(){
+        const result = confirm(`Are you sure you want to delete window ${this.window.name}`) ; // le popUp
+        if(result){
+            try{
+                // Je supprime le window
+                let response = axios.delete(`${API_HOST}/api/windows/${this.window.id}`);
+                this.$emit('window-deleted', this.window); //Je demande d'appeler la fonction @window-deleted="deleteAndUpdateWindow" pour enlever ce window dans la liste this.windows
+            } catch(error){
+                console.log("Erreur lors de la supression : ", error) ;
+            }
+        }else {
+
+        }
     }
   }
 }
