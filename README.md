@@ -10,7 +10,7 @@ Nous avons utiliser le back-end de Guillaume Ehret pour ce projet. Je pense que 
 
 Grossièrement, voici les requêtes que nous avons utilisé :
 
-PATCH : ${API_HOST}/api/windows/${this.window.id}/switch / CHANGER D'ETAT
-DELETE : ${API_HOST}/api/windows/${this.window.id} / SUPPRIMER
-GET : ${API_HOST}/api/windows / RECUPERER
-POST : ${API_HOST}/api/windows / AJOUTER
+- PATCH : ${API_HOST}/api/windows/${this.window.id}/switch / CHANGER D'ETAT
+- DELETE : ${API_HOST}/api/windows/${this.window.id} / SUPPRIMER
+- GET : ${API_HOST}/api/windows / RECUPERER
+- POST : ${API_HOST}/api/windows / AJOUTER
