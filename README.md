@@ -14,3 +14,11 @@ Grossièrement, voici les requêtes que nous avons utilisé :
 - DELETE : ${API_HOST}/api/windows/${this.window.id} / SUPPRIMER
 - GET : ${API_HOST}/api/windows / RECUPERER
 - POST : ${API_HOST}/api/windows / AJOUTER
+
+# Run Docker
+
+Installer docker sur son PC,
+puis, se mettre dans la racine du projet :
+
+$> docker build -t <nom-image> .
+$> docker run -d -p <port>:80 <nom-image>
