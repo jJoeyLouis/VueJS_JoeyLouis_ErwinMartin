@@ -20,7 +20,6 @@ Grossièrement, voici les requêtes que nous avons utilisé :
 Installer docker sur son PC,
 puis, se mettre dans la racine du projet :
 
---
 docker build -t <nom-image> .
 docker run -d -p <port>:80 <nom-image>
---
+
