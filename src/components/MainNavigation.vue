@@ -1,10 +1,10 @@
 <template>
   <ul class="nav nav-tabs">
     <li class="nav-item">
-      <a class="nav-link active" aria-current="page" href="#">Windows</a>
+      <router-link to="/windows" class="nav-link" active-class="active" aria-current="page">Windows</router-link>
     </li>
     <li class="nav-item">
-      <a class="nav-link" aria-disabled="true" tabindex="-1" href="#">Rooms</a>
+      <router-link to="/rooms" class="nav-link" active-class="active" aria-disabled="true" tabindex="-1">Rooms</router-link>
     </li>
   </ul>
 </template>

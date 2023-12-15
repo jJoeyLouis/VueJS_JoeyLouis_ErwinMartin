@@ -6,8 +6,7 @@
 
     <section class="main-content w-50 mx-auto">
       <main-navigation></main-navigation>
-      <windows-list></windows-list>
-      <!-- <rooms-list></rooms-list> -->
+      <router-view></router-view>
     </section>
   </div>
 </template>

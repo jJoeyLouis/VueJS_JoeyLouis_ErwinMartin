@@ -16,6 +16,9 @@
             <!----->
         </form>
     </template>
+    <template v-if="isLoading">
+      <p>Loading...</p>
+    </template>
     <template v-else>
         <div class="d-flex mb-2">
             <button type="button" class="btn btn-primary" @click="switchForm_Windows">Create new window</button>
@@ -43,7 +46,8 @@ export default {
       windows: [],
       isCreateWindow :false,
       rooms: [], /* liste des rooms pour le choix des rooms */
-      errorForm:false /* est ce que j'affiche que la requete formulaire s'est mal passée */
+      errorForm:false, /* est ce que j'affiche que la requete formulaire s'est mal passée */
+      isLoading: true, /*Propriété qui permet de savoir si la liste des fenêtres est toujours en train de charger*/
     }
   },
   created: async function () {
@@ -67,6 +71,8 @@ export default {
 
     let rooms = responseRoom.data;
     this.rooms = rooms;
+
+    this.isLoading = false;
   },
   methods: {
     updateWindow(newWindow) {
@@ -107,9 +113,8 @@ export default {
                 })
                 console.log("Requete Parfaite") ;
             } catch (error) {
-                console.error("Erreur lors de la requête :", error);
+              console.error("Erreur lors de la requête :", error);
             }
-
         }
     }
   }
